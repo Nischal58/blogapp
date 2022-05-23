@@ -1,22 +1,16 @@
 var tasklist= [
     {
         id:1,
-        blog:'THis is a new blog hello to every one in my blog section ',
-
+        blog:'First BLog ',
     },
     {
         id:2,
-        blog:'THis is a new blog2 hello to every one in my blog section ',
-  
-
+        blog:'Second Blog ',
     },
     {
         id:3,
-        blog:'THis is a  3 new blog2 hello to every one in my blog section ',
-  
-
+        blog:'Third Blog',
     }
-
 ];
 
  ShowBlogs = ()=>{
@@ -24,16 +18,35 @@ var tasklist= [
     tasklist.forEach((val,index)=>{
         document.querySelector('#tasklist').innerHTML += `
         <h1>${val.blog}</h1>
-        <p>${val.comment}</p>
-
-        
-        <button>Edit</button>
-        <button>delete</button>
+        <button onClick="getEditData(${index})">Edit</button>
+        <button onclick="deleteTask(${val.id})">delete</button>
 
         `;
     });
 }
-
+ShowBlogs();
 const addBlogs=()=>{
+    const id =tasklist[tasklist.length-1].id+1
+    const blog=document.querySelector('#addBlog').value;
+    tasklist.push({
+        blog,
+    });
+ShowBlogs();
 
+ 
 }
+const deleteTask = id=>{
+    tasklist = tasklist.filter(val=>val.id!==id);
+    ShowBlogs();
+}
+const getEditData = (i)=>{
+    document.querySelector('#addBlog').value = tasklist[i].blog;
+}
+const saveEditData=()=>{
+    const arrIndex = tasklist.findIndex(v=>v.id==id);
+    const blog = document.querySelector('#addBlog').value;
+    tasklist[arrIndex].blog = blog;
+    ShowBlogs();
+}
+
+
