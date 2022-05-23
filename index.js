@@ -2,6 +2,7 @@ var tasklist= [
     {
         id:1,
         blog:'First BLog ',
+        comment:'Nischal'
     },
     {
         id:2,
@@ -12,15 +13,14 @@ var tasklist= [
         blog:'Third Blog',
     }
 ];
-
  ShowBlogs = ()=>{
     document.querySelector('#tasklist').innerHTML = '';
     tasklist.forEach((val,index)=>{
         document.querySelector('#tasklist').innerHTML += `
         <h1>${val.blog}</h1>
+        <p>${val.comment}</p>
         <button onClick="getEditData(${index})">Edit</button>
         <button onclick="deleteTask(${val.id})">delete</button>
-
         `;
     });
 }
@@ -32,8 +32,6 @@ const addBlogs=()=>{
         blog,
     });
 ShowBlogs();
-
- 
 }
 const deleteTask = id=>{
     tasklist = tasklist.filter(val=>val.id!==id);
