@@ -19,10 +19,8 @@ ShowBlogs = () => {
         <h3>Comments</h3>
         <input type='text' class='comment'>
         <button onclick="addComment(${val.id})">Add comment</button>
-    
-           <p> ${val.comment}</p>
-        
-
+           <p> ${val.comment===undefined?'no comments':val.comment}</p>
+           <button onclick="editTask(${val.id})">Edit</button>
     
         <button onclick="deleteTask(${val.id})">delete</button>
         `;
@@ -44,12 +42,15 @@ const addBlogs = () => {
     // const blog=document.querySelector('#addBlog').value;
     const title = document.querySelector('.add-title').value;
     const content = document.querySelector('.add-content').value;
-
-    tasklist.push({
+        tasklist.push({
         id: id, blog: { title: title, content: content }
     });
     console.log(tasklist);
     ShowBlogs();
+   document.querySelector('.add-title').value ="";
+    document.querySelector('.add-content').value="";
+
+
 }
 const deleteTask = id => {
     tasklist = tasklist.filter(val => val.id !== id);
@@ -58,7 +59,19 @@ const deleteTask = id => {
 
 const saveEditData = () => {
     const arrIndex = tasklist.findIndex(v => v.id == id);
-    const blog = document.querySelector('#addBlog').value;
+    const blog = document.querySelector('.add-title').value;
     tasklist[arrIndex].blog = blog;
     ShowBlogs();
+}
+
+const editTask = id =>{
+    document.querySelector('.add-title').value = tasklist[id-1].blog.title;
+    document.querySelector('.add-content').value = tasklist[id-1].blog.content;
+
+    // console.log(tasklist[id-1].blog)
+
+    // =  document.querySelector('.add-title').value ; 
+
+    // tasklist[id].blog.content =  document.querySelector('.add-content').value;
+  
 }
