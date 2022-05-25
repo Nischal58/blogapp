@@ -30,9 +30,9 @@ ShowBlogs = () => {
 const addComment = (id) => {
     const commentInput = document.querySelector('.comment').value
     const arrIndex = tasklist.findIndex(v => v.id == id);
-    tasklist[arrIndex].comment = commentInput;
+    // tasklist[arrIndex].comment = commentInput;
 
-    // tasklist.comment.push(commentInput)
+    tasklist[arrIndex].comment.push(commentInput)
 
     ShowBlogs();
 }
@@ -57,10 +57,12 @@ const deleteTask = id => {
     ShowBlogs();
 }
 
-const saveEditData = () => {
+const saveEditData = id => {
     const arrIndex = tasklist.findIndex(v => v.id == id);
     const blog = document.querySelector('.add-title').value;
-    tasklist[arrIndex].blog = blog;
+    const content = document.querySelector('.add-content').value;
+    tasklist[arrIndex+1].blog.title = blog;
+    tasklist[arrIndex+1].blog.content = content;
     ShowBlogs();
 }
 
